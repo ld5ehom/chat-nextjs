@@ -57,3 +57,52 @@ You can update by running: npm i -g create-next-app
 ```
 
 ---
+
+## Prisma, Postgres install
+
+- Prisma install
+
+```
+(base) teo@MacBook-Air chat-nextjs % npm install -D prisma
+
+added 78 packages, and audited 455 packages in 10s
+
+157 packages are looking for funding
+  run `npm fund` for details
+
+7 vulnerabilities (6 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+```
+
+- Prisma init
+
+```
+base) teo@MacBook-Air chat-nextjs % npx prisma init
+
+Initialized Prisma in your project
+
+  prisma/
+    schema.prisma
+  prisma.config.ts
+  .env
+
+warn You already have a .gitignore file. Don't forget to add .env in it to not commit any private information.
+
+Next, choose how you want to set up your database:
+
+CONNECT EXISTING DATABASE:
+  1. Configure your DATABASE_URL in prisma.config.ts
+  2. Run prisma db pull to introspect your database.
+
+CREATE NEW DATABASE:
+  Local: npx prisma dev (runs Postgres locally in your terminal)
+  Cloud: npx create-db (creates a free Prisma Postgres database)
+
+Then, define your models in prisma/schema.prisma and run prisma migrate dev to apply your schema.
+
+Learn more: https://pris.ly/getting-started
+```

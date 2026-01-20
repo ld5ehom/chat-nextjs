@@ -1,8 +1,8 @@
 # Chat App - Next.js
 
-```
 ## Milestones & Task Branches
 
+```
 ### Task 1. Authentication
 - Branch: `task-1-auth`
 - Scope: NextAuth를 이용한 인증 및 인가 기능 학습 및 기본 적용
@@ -44,3 +44,5 @@
 - Scope: 그룹 채팅 생성 및 유저 이미지 수정 기능 구현
 
 ```
+
+---
