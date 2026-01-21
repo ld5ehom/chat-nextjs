@@ -58,7 +58,7 @@ You can update by running: npm i -g create-next-app
 
 ---
 
-## Prisma, Postgres install
+## [Prisma, Postgres install](https://github.com/ld5ehom/chat-nextjs/commit/5f2d8d1c2e99b44ccf2107859060bf6b9d3863bc)
 
 - Prisma install
 
