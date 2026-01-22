@@ -1,4 +1,4 @@
-# ORM(Object Relational Mapping) 이란?
+# [ORM(Object Relational Mapping) 이란?](https://github.com/ld5ehom/chat-nextjs/commit/608a0a7acdfbff7c604876c921bbdcdb45cc4251)
 
 객체와 관계형 데이터베이스의 데이터를 자동으로 변형 및 맵핑하는 작업입니다.
 
