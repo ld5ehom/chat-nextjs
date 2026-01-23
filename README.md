@@ -3,23 +3,26 @@
 ## Milestones & Task Branches
 
 ```
-## Milestones (Chapter-based Tasks)
+1. 인증 및 인가 기능 구현
+- task-1-auth
 
-### 1. 인증 및 인가 기능 구현하기
-- Branch: `task-1-auth`
+2. 채팅 앱 구현 시작
+- task-2-chat
 
-### 2. Layout 구현하기
-- Branch: `task-2-layout`
+3. Sidebar 생성
+- task-3-sidebar
 
-### 3. 유저 및 대화 목록 화면 구현하기
-- Branch: `task-3-list`
+4. 유저 및 채팅 방 나열
+- task-4-list
 
-### 4. 대화 창 구현하기
-- Branch: `task-4-chat`
+5. 대화 창 구현
+- task-5-window
 
-### 5. 그룹 채팅 및 유저 프로필 관리
-- Branch: `task-5-group`
+6. 실시간 채팅 구현
+- task-6-realtime
 
+7. 그룹 채팅 생성 및 유저 이미지 수정
+- task-7-group
 ```
 
 ---
