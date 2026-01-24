@@ -100,9 +100,7 @@ ORDER BY id ASC
 
 ---
 
----
-
-## [PostgreSQL + Prisma DB 연결]
+## [PostgreSQL + Prisma DB 연결](https://github.com/ld5ehom/chat-nextjs/commit/65d2977c9daacf1f97857843a87ac8eb88efd845)
 
 ### 작업 목적
 
@@ -125,8 +123,6 @@ docker-compose down -v
 docker-compose up -d
 ```
 
----
-
 ### 2. 환경 변수 설정
 
 - Prisma에서 사용할 데이터베이스 연결 정보 설정
@@ -135,14 +131,10 @@ docker-compose up -d
 DATABASE_URL=postgresql://postgres:password@localhost:5432/postgres
 ```
 
----
-
 ### 3. Prisma 스키마 작성
 
 - `schema.prisma` 파일에 모델 정의
 - 데이터베이스 테이블 구조를 코드로 관리
-
----
 
 ### 4. Prisma 마이그레이션 실행
 
@@ -152,15 +144,11 @@ DATABASE_URL=postgresql://postgres:password@localhost:5432/postgres
 npx prisma migrate dev --name init
 ```
 
----
-
 ### 5. pgAdmin 확인
 
 - Databases → postgres
 - Schemas → public → Tables
 - 생성된 테이블 목록 확인
-
----
 
 ### 현재 상태 요약
 
