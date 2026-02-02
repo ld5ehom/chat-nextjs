@@ -100,6 +100,8 @@ model VerificationToken {
 }
 ```
 
+---
+
 ## Schema를 이용한 DB 테이블 생성하기
 
 Sync Database with Prisma Model
@@ -119,7 +121,7 @@ npx prisma db push
 
 ---
 
-## Schema 구현 변경 사항
+## [Schema 구현 변경 사항](https://github.com/ld5ehom/chat-nextjs/commit/8482d3efce0aef053222b9b9f0ff2879ccaf7377)
 
 ```
 https://authjs.dev/getting-started/adapters/prisma
@@ -150,8 +152,7 @@ npx prisma db push
 
 기존 NextAuth Prisma Adapter 기본 스키마는 OAuth 기반 인증을 전제로 하여 비밀번호 필드를 포함하지 않습니다.
 
-이번 Schema 구현에서는 **이메일 + 비밀번호 기반 인증(Credentials Provider)** 확장을 고려하여  
-`User` 모델에 비밀번호 컬럼을 추가.
+이번 Schema 구현에서는 **이메일 + 비밀번호 기반 인증(Credentials Provider)** 확장을 고려하여 `User` 모델에 비밀번호 컬럼을 추가.
 
 - `hashedPassword` 필드 추가
 - 단방향 암호화된 비밀번호 저장 용도
@@ -180,8 +181,6 @@ NextAuth 공식 Prisma Adapter 스키마 구조를 그대로 유지합니다.
 - Session: 로그인 상태 및 세션 만료 관리
 - VerificationToken: 이메일 인증, 비밀번호 재설정 등 토큰 기반 인증 처리
 
----
-
 ### DB 반영 방식
 
 Schema 변경 이후 데이터베이스 반영은  
@@ -190,3 +189,131 @@ Prisma 모델과 실제 DB 상태를 동기화하는 방식으로 진행합니�
 - Prisma Schema 수정
 - 데이터베이스 실행 상태 확인
 - Prisma DB Sync 명령을 통해 테이블 생성 및 반영
+
+---
+
+---
+
+## [Next Auth DB Schema 생성]
+
+```
+https://authjs.dev/reference/adapter/prisma
+```
+
+### 패키지 설치
+
+NextAuth와 Prisma Adapter를 사용하여 인증 기능을 구성한다.  
+Pages Router 기반으로 인증 API를 구성한다.
+
+- next-auth
+- @prisma/client
+- @next-auth/prisma-adapter
+- prisma (개발 의존성)
+
+```
+npm install next-auth @prisma/client @next-auth/prisma-adapter
+```
+
+```
+npm install prisma --save-dev
+```
+
+---
+
+### 기본 개념
+
+인증 관련 API는 Pages Router의 API Route를 통해 구성한다.
+
+```
+src/pages/api/auth/[...nextauth].ts
+```
+
+NextAuth는 `/api/auth` 경로로 들어오는 모든 인증 관련 요청을 내부적으로 처리한다.  
+Pages Router를 사용하므로 `pages/api/auth` 경로에  
+`[...nextauth].ts` 파일을 생성하여 인증 API를 구성한다.
+
+---
+
+### NextAuth 기본 설정 코드
+
+NextAuth 설정은 Prisma Adapter를 사용하여 데이터베이스와 연결한다.  
+이를 통해 인증 과정에서 생성되는 사용자, 계정, 세션 데이터가 자동으로 저장된다.
+
+```
+import NextAuth from "next-auth"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
+export default NextAuth({
+  // adapter : 인증 관련 데이터를 DB에 저장하기 위한 Prisma Adapter
+  adapter: PrismaAdapter(prisma),
+
+  // providers : 사용할 로그인 방식을 정의
+  // 기본 로그인 또는 소셜 로그인(Google, GitHub 등)
+  providers: [],
+})
+```
+
+---
+
+### Prisma Adapter 사용 목적
+
+Prisma Adapter는 인증 과정에서 생성되는 데이터(User, Account, Session, VerificationToken)를 Prisma Client를 통해 데이터베이스에 저장하고 관리하기 위한 연결 계층이다.
+
+NextAuth는 Adapter를 통해 직접 SQL을 작성하지 않고도 인증 관련 테이블을 일관된 방식으로 관리한다.
+
+---
+
+### Provider 설정
+
+providers는 어떤 로그인 방식을 사용할지 정의한다.
+
+- OAuth 로그인 (Google, GitHub 등)
+- Credentials 로그인 (이메일 / 비밀번호 등)
+
+---
+
+### Google OAuth 설정 예시
+
+```
+import NextAuth from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
+export default NextAuth({
+  // adapter : 인증 관련 데이터를 DB에 저장하기 위한 Prisma Adapter
+  adapter: PrismaAdapter(prisma),
+
+  // providers : Google OAuth 로그인 설정
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+  ],
+})
+```
+
+---
+
+### Schema를 이용한 DB 테이블 생성하기
+
+```
+npx prisma db push
+```
+
+---
+
+### 정리
+
+- Pages Router 기반으로 인증 구성
+- src/pages/api/auth/[...nextauth].ts 단일 파일 사용
+- Prisma Adapter를 통해 인증 관련 테이블 자동 관리
+- OAuth 및 Credentials 로그인 방식 확장 가능
+
+---
