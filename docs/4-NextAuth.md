@@ -194,7 +194,7 @@ Prisma 모델과 실제 DB 상태를 동기화하는 방식으로 진행합니�
 
 ---
 
-## [Next Auth DB Schema 생성]
+## [Next Auth DB Schema 생성](https://github.com/ld5ehom/chat-nextjs/commit/4760e6d6af75d3b822c331451b20e6c9f32d6839)
 
 ```
 https://authjs.dev/reference/adapter/prisma
@@ -315,5 +315,56 @@ npx prisma db push
 - src/pages/api/auth/[...nextauth].ts 단일 파일 사용
 - Prisma Adapter를 통해 인증 관련 테이블 자동 관리
 - OAuth 및 Credentials 로그인 방식 확장 가능
+
+---
+
+---
+
+## [Next Auth 설정하기]()
+
+### 패키지 설치
+
+NextAuth 인증 구성과 Credentials 기반 로그인(이메일 / 비밀번호)을 위해 Prisma 및 비밀번호 암호화 관련 패키지를 설치한다.
+
+```
+npm install prisma --save-dev
+```
+
+```
+npm install bcryptjs
+```
+
+```
+npm install -D @types/bcryptjs
+```
+
+---
+
+### 오늘 작업 내용 정리
+
+- NextAuth 인증 API 구성
+    - src/pages/api/auth/[...nextauth].ts 파일 업데이트
+    - Prisma Adapter 연동을 통해 인증 데이터(User, Account, Session) 관리
+    - Google / Github OAuth Provider 설정
+    - Credentials Provider(이메일 / 비밀번호) 추가
+
+- Prisma 연동 구조 정리
+    - Prisma Client 전역 인스턴스 분리
+    - src/helpers/prismadb.ts 파일 생성
+    - 개발 환경에서 Hot Reload 시 Prisma 인스턴스 중복 생성 방지
+
+- 인증 로직 구현
+    - bcryptjs를 이용한 비밀번호 비교 로직 추가
+    - 이메일 기준 사용자 조회 및 인증 처리
+    - Credentials 인증 실패 시 예외 처리
+
+- 네비게이션 로그인 상태 분기
+    - useSession 대신 서버에서 전달된 currentUser 기반 분기
+    - 로그인 상태에 따라 Admin / User / Signout 메뉴 렌더링
+    - 비로그인 상태에서는 Signin 버튼만 노출
+
+- 프로젝트 설정 정리
+    - tsconfig.json path alias(@/\*) 설정 추가
+    - NextAuth, Prisma, Credentials 인증 흐름 정상 동작 확인
 
 ---
