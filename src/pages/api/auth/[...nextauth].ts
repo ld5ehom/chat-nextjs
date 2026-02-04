@@ -66,9 +66,10 @@ export const authOptions: NextAuthOptions = {
             },
         }),
     ],
-    pages: {
-        signIn: "/auth/login",
-    },
+    // SignIn Test
+    // pages: {
+    //     signIn: "/auth/login",
+    // },
     session: {
         strategy: "jwt",
     },
@@ -79,13 +80,23 @@ export const authOptions: NextAuthOptions = {
     },
     debug: true,
     callbacks: {
-        // async jwt({ token, user }) {
-        //     return { ...token, ...user }
-        // },
-        // async session({ session, token }) {
-        //     session.user = token;
-        //     return session;
-        // }
+        // Attach JWT token data to session object
+        // JWT 토큰 데이터를 세션(session)에 병합하여
+        // 클라이언트 및 미들웨어에서 사용자 식별/권한 정보를 사용할 수 있도록 처리
+        async jwt({ token, user }) {
+            // console.log('token', token);
+            // console.log('user', user);
+            return { ...token, ...user };
+        },
+
+        // Expose token data through session.user
+        // jwt 콜백에서 확장된 토큰 데이터를 session.user에 주입
+        // 이후 UI, 서버 컴포넌트, 미들웨어에서 동일한 사용자 데이터 사용 가능
+        async session({ session, token }) {
+            // console.log('@', session, token);
+            session.user = token;
+            return session;
+        },
     },
 };
 
