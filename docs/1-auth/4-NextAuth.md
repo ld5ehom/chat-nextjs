@@ -320,7 +320,7 @@ npx prisma db push
 
 ---
 
-## [Next Auth 설정하기]()
+## [Next Auth 설정하기](https://github.com/ld5ehom/chat-nextjs/commit/5f8b26393066a4aeb94edb6d9c0b11f2f4d4bf6b)
 
 ### 패키지 설치
 
