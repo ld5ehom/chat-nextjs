@@ -1,4 +1,4 @@
-// export { default } from 'next-auth/middleware';
+export { default } from "next-auth/middleware";
 
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -17,6 +17,9 @@ export async function middleware(req: NextRequest) {
     // Current request path (현재 요청 경로)
     const pathname = req.nextUrl.pathname;
 
+    // console.log("session", session);
+    // console.log(req.nextUrl.pathname);
+
     // Allow only authenticated users (로그인된 유저만 접근 가능)
     // If not logged in, redirect to login page (/user 경로 접근 시 비로그인 상태면 로그인 페이지로 이동)
     if (pathname.startsWith("/user") && !session) {
@@ -25,7 +28,7 @@ export async function middleware(req: NextRequest) {
 
     // Allow only admin users (어드민 유저만 접근 가능)
     // If role is not admin, redirect to home (/admin 접근 시 admin 권한이 아니면 홈으로 이동)
-    if (pathname.startsWith("/admin") && session?.role !== "admin") {
+    if (pathname.startsWith("/admin") && session?.role !== "Admin") {
         return NextResponse.redirect(new URL("/", req.url));
     }
 

@@ -38,31 +38,25 @@ export const authOptions: NextAuthOptions = {
             },
 
             // DB에서 유저에 맞는 정보를 가져옴
-            async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) {
-                    throw new Error("Invalid credentials");
+            async authorize(_credentials, _req) {
+                // Add logic here to look up the user from the credentials supplied
+
+                const user = {
+                    id: "1",
+                    name: "J Smith",
+                    email: "jsmith@example.com",
+                    role: "User",
+                };
+
+                if (user) {
+                    // Any object returned will be saved in `user` property of the JWT
+                    return user;
+                } else {
+                    // If you return null then an error will be displayed advising the user to check their details
+                    return null;
                 }
 
-                const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email,
-                    },
-                });
-
-                if (!user || !user?.hashedPassword) {
-                    throw new Error("Invalid credentials");
-                }
-
-                const isCorrectPassword = await bcrypt.compare(
-                    credentials.password,
-                    user.hashedPassword,
-                );
-
-                if (!isCorrectPassword) {
-                    throw new Error("Invalid credentials");
-                }
-
-                return user;
+                // You can also Reject this callback with an Error thus the user will be sent to the error page
             },
         }),
     ],
@@ -73,12 +67,11 @@ export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
     },
-
     jwt: {
         secret: process.env.JWT_SECRET,
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
-    debug: true,
+    // debug: true,
     callbacks: {
         // Attach JWT token data to session object
         // JWT 토큰 데이터를 세션(session)에 병합하여
