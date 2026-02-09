@@ -1,4 +1,4 @@
-# Login Session
+# [Login Session](https://github.com/ld5ehom/chat-nextjs/commit/83a5b0e83c180a14a570b60104ac1cd4af02698a)
 
 ## 로그인한 사용자만 특정 경로에 접근하기 (Next.js Middleware)
 
@@ -7,7 +7,7 @@ Next.js Middleware와 NextAuth의 JWT 세션을 사용하여 페이지가 렌더
 이 방식은 클라이언트 컴포넌트(useSession)에 의존하지 않고,  
 요청(Request) 자체를 기준으로 인증 여부 및 권한을 판단하기 때문에 보안 측면에서 더 명확하고 안정적인 구조를 만든다.
 
-공식 문서 참고
+- 공식 문서 참고
 
 ```
 next-auth.js.org/configuration/nextjs#basic-usage
@@ -15,7 +15,7 @@ next-auth.js.org/configuration/nextjs#basic-usage
 
 ---
 
-## Middleware 개요
+## Middleware.ts
 
 - 모든 요청은 라우트로 전달되기 전에 middleware를 먼저 거친다
 - next-auth/jwt의 getToken을 사용하여 JWT 기반 세션 정보를 조회한다
@@ -185,7 +185,3 @@ TypeScript 기준에서는 해당 필드가 정의되어 있지 않아 타입 �
 - Session 콜백을 통해 token 데이터를 session.user로 전달
 - Session 구조 변경에 맞춰 NextAuth 타입 확장
 - 이후 미들웨어 및 UI에서 권한(role) 기반 로직을 구현할 수 있는 기반 마련
-
----
-
----

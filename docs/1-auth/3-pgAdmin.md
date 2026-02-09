@@ -1,7 +1,5 @@
 # [pgAdmin 사용법](https://github.com/ld5ehom/chat-nextjs/commit/41581bf57617eba5ebc52638408206612c6b1988)
 
-pgAdmin (데이터베이스를 보는 툴(Tool)입니다.)
-
 ## Window 에서 PostgresSQL 설치하기
 
 ```
@@ -102,8 +100,6 @@ ORDER BY id ASC
 
 ## [PostgreSQL + Prisma DB 연결](https://github.com/ld5ehom/chat-nextjs/commit/65d2977c9daacf1f97857843a87ac8eb88efd845)
 
-### 작업 목적
-
 - 로컬 환경에서 PostgreSQL 데이터베이스 실행
 - Prisma ORM을 이용한 데이터베이스 연결
 - 초기 마이그레이션을 통해 테이블 생성
@@ -156,5 +152,3 @@ npx prisma migrate dev --name init
 - Prisma와 PostgreSQL 연결 완료
 - 마이그레이션 적용 완료
 - pgAdmin에서 데이터베이스 및 테이블 조회 가능
-
----

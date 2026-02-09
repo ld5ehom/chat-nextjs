@@ -1,27 +1,22 @@
 # [Navbar](https://github.com/ld5ehom/chat-nextjs/commit/2b3612a9c5668050f447ed629d3cce2ee4832367)
 
-./src/components/Navbar.tsx
+## ./src/components/Navbar.tsx
 
 Navbar 컴포넌트는 애플리케이션 전역 상단에 표시되는 네비게이션 UI를 담당한다.
 이 컴포넌트는 App Router 구조에서 layout.tsx에 포함되어 모든 페이지에 공통으로 렌더링된다.
-
-이 컴포넌트의 핵심 목적은 다음과 같다.
 
 - 상단에 로고를 표시하고 홈(`/`)으로 이동할 수 있도록 한다.
 - 화면 크기에 따라 데스크탑과 모바일 네비게이션을 분리해 렌더링한다.
 - 모바일 환경에서는 메뉴를 토글 방식으로 열고 닫을 수 있도록 상태를 관리한다.
 
 Navbar는 React의 useState 훅을 사용하여 `menu` 상태를 관리한다.
-이 상태는 모바일 화면에서 메뉴가 열려 있는지 여부를 나타내며,
-메뉴 버튼을 클릭할 때마다 true/false로 토글된다.
+이 상태는 모바일 화면에서 메뉴가 열려 있는지 여부를 나타내며, 메뉴 버튼을 클릭할 때마다 true/false로 토글된다.
 
-데스크탑(sm 이상) 화면에서는 NavItem 컴포넌트를 항상 렌더링하여
-가로 형태의 메뉴를 상단 바에 노출한다.
+데스크탑(sm 이상) 화면에서는 NavItem 컴포넌트를 항상 렌더링하여 가로 형태의 메뉴를 상단 바에 노출한다.
 
 모바일(sm 미만) 화면에서는 기본적으로 메뉴를 숨기고,
 메뉴 버튼을 클릭했을 때만 NavItem 컴포넌트를 렌더링한다.
-이때 NavItem에는 `mobile` props를 전달하여
-모바일 전용 레이아웃으로 렌더링되도록 한다.
+이때 NavItem에는 `mobile` props를 전달하여 모바일 전용 레이아웃으로 렌더링되도록 한다.
 
 Navbar 내부에서는 레이아웃과 반응형 처리를 위해 Tailwind CSS 유틸리티 클래스를 사용한다.
 flex, justify, hidden/sm:block 같은 클래스 조합을 통해
@@ -29,7 +24,7 @@ flex, justify, hidden/sm:block 같은 클래스 조합을 통해
 
 ---
 
-./src/components/NavItem.tsx
+## ./src/components/NavItem.tsx
 
 NavItem 컴포넌트는 실제 네비게이션 메뉴 항목 리스트를 렌더링하는 역할을 담당한다.
 Navbar에서 재사용되며, 데스크탑과 모바일 환경 모두에서 동일한 메뉴 데이터를 공유한다.
@@ -56,17 +51,15 @@ NavItem 내부에는 다음과 같은 메뉴 항목이 정의되어 있다.
 - Signin: 추후 인증 로직 연결을 위한 버튼
 - Signout: 추후 로그아웃 로직 연결을 위한 버튼
 
-페이지 이동이 필요한 항목(Admin, User)은 Next.js의 `next/link`를 사용하여
-클라이언트 사이드 라우팅 방식으로 구현하였다.
+페이지 이동이 필요한 항목(Admin, User)은 Next.js의 `next/link`를 사용하여 클라이언트 사이드 라우팅 방식으로 구현하였다.
 이를 통해 페이지 이동 시 전체 리로드 없이 자연스러운 전환이 가능하다.
 
 ---
 
-./src/app/layout.tsx
+## ./src/app/layout.tsx
 
 layout.tsx는 App Router 환경에서 최상위 레이아웃을 정의하는 파일이다.
-이 파일에서 Navbar 컴포넌트를 렌더링함으로써,
-모든 페이지에서 공통으로 네비게이션 바가 표시되도록 구성하였다.
+이 파일에서 Navbar 컴포넌트를 렌더링함으로써, 모든 페이지에서 공통으로 네비게이션 바가 표시되도록 구성하였다.
 
 layout.tsx는 개별 페이지의 내용(children)을 감싸는 역할만 수행하며,
 네비게이션 로직이나 상태 관리는 Navbar 컴포넌트로 위임한다.
@@ -78,11 +71,10 @@ layout.tsx는 개별 페이지의 내용(children)을 감싸는 역할만 수행
 
 ---
 
-./src/app/page.tsx
+## ./src/app/page.tsx
 
 page.tsx는 기본 루트(`/`) 페이지를 담당한다.
 Navbar 구현 이후에도 별도의 네비게이션 로직을 포함하지 않으며,
 layout.tsx를 통해 자동으로 Navbar가 상단에 렌더링된다.
 
-이 페이지는 이후 채팅 UI, 사용자 기능 등을 추가하기 위한
-기본 진입 페이지 역할을 한다.
+이 페이지는 이후 채팅 UI, 사용자 기능 등을 추가하기 위한 기본 진입 페이지 역할을 한다.

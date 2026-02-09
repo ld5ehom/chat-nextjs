@@ -81,7 +81,7 @@ Run `npm audit` for details.
 - Prisma init
 
 ```
-base) teo@MacBook-Air chat-nextjs % npx prisma init
+(base) teo@MacBook-Air chat-nextjs % npx prisma init
 
 Initialized Prisma in your project
 

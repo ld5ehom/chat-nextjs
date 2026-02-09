@@ -2,9 +2,9 @@
 
 ## [NextAuth를 위한 DB 스키마 생성하기](https://github.com/ld5ehom/chat-nextjs/commit/515bae5f4a81fdbc4f6e69e5171871535562f45d)
 
-## 참고 링크
-
+```
 https://authjs.dev/reference/adapter/prisma
+```
 
 ## NextAuth를 위한 DB Schema 생성
 
@@ -366,5 +366,3 @@ npm install -D @types/bcryptjs
 - 프로젝트 설정 정리
     - tsconfig.json path alias(@/\*) 설정 추가
     - NextAuth, Prisma, Credentials 인증 흐름 정상 동작 확인
-
----
